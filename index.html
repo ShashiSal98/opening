@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Grand Opening | Luxe & Co. Boutique</title>
+    <!-- Tailwind CSS for modern structural styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for premium serif and clean sans headings -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b0f19;
+            color: #f3f4f6;
+        }
+        .font-serif {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .gold-text {
+            color: #d4af37;
+        }
+        .gold-bg {
+            background-color: #d4af37;
+        }
+        .gold-border {
+            border-color: #d4af37;
+        }
+
+        /* --- Ribbon-Cutting Overlay Styles --- */
+        #ribbonOverlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background-color: #0b0f19;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1s ease, visibility 1s ease;
+        }
+
+        #ribbonOverlay.cut {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .ribbon-container {
+            position: relative;
+            width: 100%;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .ribbon-half {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(135deg, #b8860b, #ffd700, #b8860b);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .ribbon-left {
+            left: 0;
+            border-right: 2px solid #8b6508;
+        }
+
+        .ribbon-right {
+            right: 0;
+            border-left: 2px solid #8b6508;
+        }
+
+        /* Cut Animation */
+        #ribbonOverlay.cut .ribbon-left {
+            transform: translateX(-100%) rotate(-10deg);
+        }
+
+        #ribbonOverlay.cut .ribbon-right {
+            transform: translateX(100%) rotate(10deg);
+        }
+
+        .cut-button {
+            position: relative;
+            z-index: 10;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .cut-button:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-amber-500 selection:text-black">
+
+    <!-- Interactive Ribbon-Cutting Overlay -->
+    <div id="ribbonOverlay">
+        <div class="text-center mb-8 px-4">
+            <i class="fa-solid fa-hotel gold-text text-4xl mb-4 block"></i>
+            <h2 class="font-serif text-3xl md:text-5xl font-light text-white mb-2">Luxe & Co. Boutique</h2>
+            <p class="text-xs uppercase tracking-[0.3em] gold-text">Click below to cut the ribbon</p>
+        </div>
+
+        <div class="ribbon-container my-6">
+            <div class="ribbon-half ribbon-left"></div>
+            <div class="ribbon-half ribbon-right"></div>
+            <button onclick="cutRibbon()" class="cut-button gold-bg text-black px-6 py-3 rounded-full font-semibold uppercase text-xs tracking-widest flex items-center gap-3 shadow-2xl border-2 border-amber-200">
+                <i class="fa-solid fa-scissors text-lg transform -rotate-45"></i>
+                <span>Cut Ribbon</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main id="mainContent">
+        <!-- Hero / Welcome Section -->
+        <section class="min-h-screen flex flex-col justify-center items-center text-center px-6 border-b border-slate-800 relative py-20">
+            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:16px_16px]"></div>
+            <div class="relative z-10 max-w-2xl mx-auto">
+                <!-- Top Ornament Icon -->
+                <div class="mb-6 text-3xl gold-text opacity-80 animate-fade-in">
+                    <i class="fa-solid fa-hotel"></i>
+                </div>
+                <p class="tracking-[0.25em] text-xs uppercase gold-text font-medium mb-4">You Are Cordially Invited To</p>
+                <h1 class="font-serif text-5xl md:text-7xl font-light tracking-wide leading-tight mb-6">
+                    The Grand <br><span class="italic gold-text font-normal">Opening</span>
+                </h1>
+                <div class="w-16 h-[1px] gold-bg mx-auto my-6"></div>
+                <p class="text-lg md:text-xl text-slate-400 font-light tracking-wide max-w-md mx-auto">of Luxe & Co. Boutique</p>
+            </div>
+        </section>
+
+        <!-- Venue Hero Image Section -->
+        <section class="relative h-[60vh] w-full overflow-hidden bg-slate-900 flex items-center justify-center">
+            <div class="absolute inset-0 bg-cover bg-center opacity-60 filter grayscale contrast-125" style="background-image: url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&q=80&w=1920');"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0b0f19] via-transparent to-[#0b0f19]"></div>
+            <div class="relative z-10 text-center px-4">
+                <span class="tracking-[0.3em] text-xs uppercase text-slate-400 block mb-2">The Venue</span>
+                <h2 class="font-serif text-3xl md:text-5xl font-light text-white tracking-wide">The Grand Ballroom</h2>
+            </div>
+        </section>
+
+        <!-- Countdown Timer Section -->
+        <section class="py-16 bg-slate-950 text-center border-y border-slate-900">
+            <div class="max-w-4xl mx-auto px-6">
+                <p class="text-xs uppercase tracking-[0.2em] text-slate-500 mb-8">Counting Down To The Moment</p>
+                <div class="grid grid-cols-4 gap-4 max-w-lg mx-auto">
+                    <div class="bg-[#0b0f19] p-4 rounded border border-slate-900 shadow-xl">
+                        <span id="days" class="font-serif text-3xl md:text-4xl text-white block font-light">00</span>
+                        <span class="text-[10px] uppercase tracking-widest text-slate-500 block mt-1">Days</span>
+                    </div>
+                    <div class="bg-[#0b0f19] p-4 rounded border border-slate-900 shadow-xl">
+                        <span id="hours" class="font-serif text-3xl md:text-4xl text-white block font-light">00</span>
+                        <span class="text-[10px] uppercase tracking-widest text-slate-500 block mt-1">Hours</span>
+                    </div>
+                    <div class="bg-[#0b0f19] p-4 rounded border border-slate-900 shadow-xl">
+                        <span id="minutes" class="font-serif text-3xl md:text-4xl text-white block font-light">00</span>
+                        <span class="text-[10px] uppercase tracking-widest text-slate-500 block mt-1">Mins</span>
+                    </div>
+                    <div class="bg-[#0b0f19] p-4 rounded border border-slate-900 shadow-xl">
+                        <span id="seconds" class="font-serif text-3xl md:text-4xl text-white block font-light">00</span>
+                        <span class="text-[10px] uppercase tracking-widest text-slate-500 block mt-1">Secs</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Event Details Section -->
+        <section class="py-24 px-6 max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="font-serif text-3xl md:text-4xl tracking-wide font-light mb-3">Event Details</h2>
+                <div class="w-12 h-[1px] gold-bg mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 text-center">
+                <!-- Date Card -->
+                <div class="p-8 rounded-lg bg-slate-950/50 border border-slate-900 flex flex-col items-center">
+                    <div class="w-12 h-12 rounded-full border border-slate-800 flex items-center justify-center mb-6 gold-text">
+                        <i class="fa-regular fa-calendar-days text-xl"></i>
+                    </div>
+                    <h3 class="text-xs uppercase tracking-widest text-slate-500 mb-2">Date</h3>
+                    <p class="font-serif text-xl text-white">Friday, December 15th</p>
+                    <p class="text-sm text-slate-400 mt-1">2026</p>
+                </div>
+                <!-- Time Card -->
+                <div class="p-8 rounded-lg bg-slate-950/50 border border-slate-900 flex flex-col items-center">
+                    <div class="w-12 h-12 rounded-full border border-slate-800 flex items-center justify-center mb-6 gold-text">
+                        <i class="fa-regular fa-clock text-xl"></i>
+                    </div>
+                    <h3 class="text-xs uppercase tracking-widest text-slate-500 mb-2">Time</h3>
+                    <p class="font-serif text-xl text-white">6:00 PM</p>
+                    <p class="text-sm text-slate-400 mt-1">Until 10:00 PM</p>
+                </div>
+                <!-- Venue Card -->
+                <div class="p-8 rounded-lg bg-slate-950/50 border border-slate-900 flex flex-col items-center">
+                    <div class="w-12 h-12 rounded-full border border-slate-800 flex items-center justify-center mb-6 gold-text">
+                        <i class="fa-solid fa-location-dot text-xl"></i>
+                    </div>
+                    <h3 class="text-xs uppercase tracking-widest text-slate-500 mb-2">Venue</h3>
+                    <p class="font-serif text-xl text-white">The Grand Ballroom</p>
+                    <p class="text-sm text-slate-400 mt-1">123 Elegance Ave, Galle, Sri Lanka 10001</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Highlights Section -->
+        <section class="py-24 bg-slate-950/40 border-y border-slate-900 px-6">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="font-serif text-3xl md:text-4xl tracking-wide font-light mb-3">An Evening Awaits</h2>
+                    <div class="w-12 h-[1px] gold-bg mx-auto"></div>
+                </div>
+                <div class="grid md:grid-cols-3 gap-12">
+                    <div class="text-center md:text-left">
+                        <div class="text-2xl gold-text mb-4"><i class="fa-solid fa-champagne-glasses"></i></div>
+                        <h3 class="font-serif text-xl text-white mb-2 tracking-wide">Gourmet Reception</h3>
+                        <p class="text-sm text-slate-400 font-light leading-relaxed">Exquisite cocktails and artisanal canapés curated by top chefs</p>
+                    </div>
+                    <div class="text-center md:text-left">
+                        <div class="text-2xl gold-text mb-4"><i class="fa-solid fa-music"></i></div>
+                        <h3 class="font-serif text-xl text-white mb-2 tracking-wide">Live Entertainment</h3>
+                        <p class="text-sm text-slate-400 font-light leading-relaxed">A captivating live jazz performance to set the perfect evening mood</p>
+                    </div>
+                    <div class="text-center md:text-left">
+                        <div class="text-2xl gold-text mb-4"><i class="fa-solid fa-gem"></i></div>
+                        <h3 class="font-serif text-xl text-white mb-2 tracking-wide">Exclusive Previews</h3>
+                        <p class="text-sm text-slate-400 font-light leading-relaxed">Be the first to discover our newly curated collection and special opening features</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="py-24 px-6 max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="font-serif text-3xl md:text-4xl tracking-wide font-light mb-3">A Glimpse of What Awaits</h2>
+                <p class="text-xs text-slate-500 uppercase tracking-widest">A preview of the evening's ambiance</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="overflow-hidden bg-slate-900 rounded aspect-[3/4]">
+                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=600" alt="Ribbon cutting event" class="w-full h-full object-cover opacity-80 hover:opacity-100 hover:scale-105 transition duration-500 grayscale hover:grayscale-0">
+                </div>
+                <div class="overflow-hidden bg-slate-900 rounded aspect-[3/4] mt-4 md:mt-8">
+                    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&q=80&w=600" alt="Interior ambiance" class="w-full h-full object-cover opacity-80 hover:opacity-100 hover:scale-105 transition duration-500 grayscale hover:grayscale-0">
+                </div>
+                <div class="overflow-hidden bg-slate-900 rounded aspect-[3/4]">
+                    <img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?auto=format&fit=crop&q=80&w=600" alt="Gourmet reception wine" class="w-full h-full object-cover opacity-80 hover:opacity-100 hover:scale-105 transition duration-500 grayscale hover:grayscale-0">
+                </div>
+                <div class="overflow-hidden bg-slate-900 rounded aspect-[3/4] mt-4 md:mt-8">
+                    <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&q=80&w=600" alt="Live band showcase" class="w-full h-full object-cover opacity-80 hover:opacity-100 hover:scale-105 transition duration-500 grayscale hover:grayscale-0">
+                </div>
+            </div>
+        </section>
+
+        <!-- Map/Location Section -->
+        <section class="py-24 bg-slate-950 border-t border-slate-900 text-center px-6">
+            <div class="max-w-xl mx-auto">
+                <h2 class="font-serif text-3xl tracking-wide font-light mb-3">Find Us Here</h2>
+                <p class="text-sm text-slate-400 font-light mb-8">123 Elegance Avenue, Galle, Sri Lanka, 10001</p>
+                
+                <div class="w-full h-64 rounded bg-slate-900 border border-slate-850 overflow-hidden relative shadow-inner">
+                    <iframe 
+                        class="w-full h-full grayscale opacity-70 contrast-125"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.617540212339!2d-73.98656122342207!3d40.74844047138814!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1700000000000" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- RSVP Section -->
+        <section class="py-24 px-6 max-w-xl mx-auto text-center">
+            <div class="mb-10">
+                <i class="fa-regular fa-envelope-open text-2xl gold-text mb-4 opacity-80"></i>
+                <p class="text-xs tracking-[0.2em] uppercase text-slate-400 mb-2">Kindly Respond By May 1st, 2026</p>
+                <h2 class="font-serif text-4xl tracking-wide font-light">RSVP</h2>
+                <div class="w-12 h-[1px] gold-bg mx-auto mt-4"></div>
+            </div>
+            
+            <form class="space-y-6 text-left" id="rsvpForm">
+                <div>
+                    <label class="block text-xs uppercase tracking-widest text-slate-400 mb-2 font-medium">Full Name</label>
+                    <input type="text" required class="w-full bg-slate-950 border border-slate-800 rounded px-4 py-3 text-white focus:outline-none focus:border-amber-600 font-light transition">
+                </div>
+                <div>
+                    <label class="block text-xs uppercase tracking-widest text-slate-400 mb-2 font-medium">Email Address</label>
+                    <input type="email" required class="w-full bg-slate-950 border border-slate-800 rounded px-4 py-3 text-white focus:outline-none focus:border-amber-600 font-light transition">
+                </div>
+                <div>
+                    <label class="block text-xs uppercase tracking-widest text-slate-400 mb-2 font-medium">Attendance</label>
+                    <select class="w-full bg-slate-950 border border-slate-800 rounded px-4 py-3 text-white focus:outline-none focus:border-amber-600 font-light transition">
+                        <option value="yes" class="bg-slate-950 text-white">Accepts with pleasure</option>
+                        <option value="no" class="bg-slate-950 text-white">Declines with regret</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full py-4 uppercase tracking-[0.2em] text-xs font-semibold gold-bg text-slate-950 hover:bg-amber-400 rounded shadow-lg transition duration-300">
+                    Submit Response
+                </button>
+            </form>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-16 text-center border-t border-slate-900 bg-slate-950/80 px-6">
+            <p class="font-serif text-lg text-slate-300 italic mb-4">We eagerly await the pleasure of your company.</p>
+            <p class="text-xs uppercase tracking-[0.25em] text-slate-500 font-medium">Luxe & Co. Boutique — Est. 2026</p>
+            <div class="mt-8 text-xl gold-text opacity-40">
+                <i class="fa-solid fa-hotel"></i>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Scripts -->
+    <script>
+        // Ribbon Cut Function
+        function cutRibbon() {
+            const overlay = document.getElementById('ribbonOverlay');
+            overlay.classList.add('cut');
+        }
+
+        // Countdown Timer
+        const targetDate = new Date("Dec 15, 2026 18:00:00").getTime();
+
+        const countdownFunction = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+
+            if (distance < 0) {
+                clearInterval(countdownFunction);
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
